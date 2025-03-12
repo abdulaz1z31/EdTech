@@ -2,6 +2,10 @@ import "reflect-metadata";
 import { DataSource } from "typeorm";
 import { config } from "./env";
 import { User } from "../../module/user/entity/user.entity";
+import { Course } from "../../module/progress/entity/course.entity";
+import { Lesson } from "../../module/lesson/entity/lesson.entity";
+import { Enrollment } from "../../module/enrollment/entity/enrollment.entity";
+import { Progress } from "../../module/progress/entity/progress.entity";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -10,7 +14,7 @@ export const AppDataSource = new DataSource({
   username: config.DB_USER,
   password: config.DB_PASSWORD,
   database: config.DB_NAME,
-  entities: [User],
+  entities: [User, Course, Lesson, Enrollment, Progress],
   synchronize: true,
   logging: true,
 });

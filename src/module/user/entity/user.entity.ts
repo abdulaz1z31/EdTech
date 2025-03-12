@@ -8,6 +8,8 @@ import {
 } from "typeorm";
 import { UserRoles } from "../constants/user.constants";
 import { Course } from "../../course/entity/course.entity";
+import { Enrollment } from "../../enrollment/entity/enrollment.entity";
+import { Progress } from "../../progress/entity/progress.entity";
 
 @Entity({ name: "user" })
 export class User {
@@ -34,4 +36,10 @@ export class User {
 
   @OneToMany(() => Course, (course) => course.user)
   courses: Course[];
+
+  @OneToMany(() => Progress, (progress) => progress.student)
+  progress: Course[];
+
+  @OneToMany(() => Enrollment, (entollmetn) => entollmetn.student)
+  enrollments: Course[];
 }

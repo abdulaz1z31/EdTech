@@ -10,6 +10,7 @@ import {
 } from "typeorm";
 import { User } from "../../user";
 import { Lesson } from "../../lesson/entity/lesson.entity";
+import { Enrollment } from "../../enrollment/entity/enrollment.entity";
 
 @Entity("course")
 export class Course {
@@ -36,6 +37,9 @@ export class Course {
 
   @OneToMany(() => Lesson, (lesson) => lesson.course)
   lessons: Lesson[];
+
+  @OneToMany(() => Enrollment, (entollmetn) => entollmetn.course)
+  enrollments: Course[];
 
   @ManyToOne(() => User, (user) => user.courses, { nullable: false })
   @JoinColumn({ name: "teacher_id" })

@@ -6,8 +6,10 @@ import {
   JoinColumn,
   CreateDateColumn,
   UpdateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { Course } from "../../course/entity/course.entity";
+import { Progress } from "../../progress/entity/progress.entity";
 
 @Entity("lesson")
 export class Lesson {
@@ -38,4 +40,7 @@ export class Lesson {
   @ManyToOne(() => Course, (course) => course.lessons, { nullable: false })
   @JoinColumn({ name: "course_id" })
   course: Course;
+
+  @OneToMany(() => Progress, (progress) => progress.lesson)
+  progress: Course[];
 }

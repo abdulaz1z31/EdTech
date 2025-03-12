@@ -11,7 +11,7 @@ import { validate } from "../../application/middleware/validation.middleware";
 import "express-async-errors";
 import { roleGuard } from "../../../infrastructure";
 import { UserRoles } from "../../user";
-const asyncHandler = (
+export const asyncHandler = (
   fn: (req: Request, res: Response, next: NextFunction) => Promise<any>,
 ): RequestHandler => {
   return (req: Request, res: Response, next: NextFunction) => {
