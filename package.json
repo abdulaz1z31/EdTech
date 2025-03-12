@@ -1,0 +1,44 @@
+{
+  "name": "typescripteditor",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "dev": "npx ts-node main.ts",
+    "watch": "nodemon --watch src --ext ts --exec 'ts-node main.ts'",
+    "build": "tsc",
+    "lint": "eslint src --ext .ts",
+    "lint:fix": "eslint src --ext .ts --fix",
+    "format": "prettier --write ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/joi": "^17.2.2",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/node": "^22.13.10",
+    "@typescript-eslint/eslint-plugin": "^8.26.1",
+    "@typescript-eslint/parser": "^8.26.1",
+    "eslint": "^9.22.0",
+    "eslint-config-prettier": "^10.1.1",
+    "nodemon": "^3.1.9",
+    "prettier": "^3.5.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.2"
+  },
+  "dependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-async-errors": "^3.1.1",
+    "joi": "^17.13.3",
+    "jsonwebtoken": "^9.0.2",
+    "pg": "^8.14.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.21"
+  }
+}
