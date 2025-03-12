@@ -2,10 +2,10 @@ import { Request, Response } from "express";
 import { EnrollmentService } from "../service/enrollment.service";
 
 export const EnrollmentController = {
-  async create(req: Request, res: Response) {
-    const enrollment = await EnrollmentService.create(req.body);
-    res.status(201).json(enrollment);
-  },
+  // async create(req: Request, res: Response) {
+  //   const enrollment = await EnrollmentService.create(req.body);
+  //   res.status(201).json(enrollment);
+  // },
 
   async getAll(req: Request, res: Response) {
     const enrollments = await EnrollmentService.getAll();

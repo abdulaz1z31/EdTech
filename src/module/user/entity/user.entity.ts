@@ -38,8 +38,8 @@ export class User {
   courses: Course[];
 
   @OneToMany(() => Progress, (progress) => progress.student)
-  progress: Course[];
+  progress: Progress[];
 
-  @OneToMany(() => Enrollment, (entollmetn) => entollmetn.student)
-  enrollments: Course[];
+  @OneToMany(() => Enrollment, (enrollment) => enrollment.student)
+  enrollments: Enrollment[];
 }

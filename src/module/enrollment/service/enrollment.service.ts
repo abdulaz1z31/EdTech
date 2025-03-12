@@ -5,9 +5,9 @@ import { IEnrollmentDto } from "../interface/enrollment.interface";
 const enrollmentRepository = AppDataSource.getRepository(Enrollment);
 
 export const EnrollmentService = {
-  async create(dto: IEnrollmentDto) {
-    return await enrollmentRepository.save(dto);
-  },
+  // async create(dto: IEnrollmentDto) {
+  //   return await enrollmentRepository.save(dto);
+  // },
 
   async getAll() {
     return await enrollmentRepository.find();
