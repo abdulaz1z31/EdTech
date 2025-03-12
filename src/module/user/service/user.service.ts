@@ -1,21 +1,21 @@
 import {
-  AppDataSource as db,
+  AppDataSource,
   HashService as hashService,
 } from "../../../infrastructure";
 import { IUser } from "../constants/user.constants";
 import { User } from "../entity/user.entity";
-
+const userRepository = AppDataSource.getRepository(User);
 export const UserService = {
   async create(dto: IUser) {
     const hashPassword = await hashService.generate(dto.password);
     dto.password = hashPassword;
     dto.created_at = new Date(Date.now());
-    const user = await db.getRepository(User).save(dto);
+    const user = await userRepository.save(dto);
     return user;
   },
 
   async findById(id: string) {
-    const user = await db.getRepository(User).findOneBy({ id });
+    const user = await userRepository.findOneBy({ id });
     if (!user) {
       throw new Error("User not found");
     }
@@ -23,7 +23,7 @@ export const UserService = {
   },
 
   async findByEmail(email: string) {
-    const user = await db.getRepository(User).findOneBy({ email });
+    const user = await userRepository.findOneBy({ email });
     if (!user) {
       throw new Error("User not found");
     }
@@ -31,7 +31,7 @@ export const UserService = {
   },
 
   async update(id: string, dto: Partial<IUser>) {
-    const user = await db.getRepository(User).findOneBy({ id });
+    const user = await userRepository.findOneBy({ id });
     if (!user) {
       throw new Error("User not found");
     }
@@ -41,26 +41,26 @@ export const UserService = {
     }
     dto.updated_at = new Date(Date.now());
 
-    await db.getRepository(User).update(id, dto);
+    await userRepository.update(id, dto);
     return { ...user, ...dto };
   },
 
   async delete(id: string) {
-    const user = await db.getRepository(User).findOneBy({ id });
+    const user = await userRepository.findOneBy({ id });
     if (!user) {
       throw new Error("User not found");
     }
 
-    await db.getRepository(User).delete(id);
-    return id
+    await userRepository.delete(id);
+    return id;
   },
 
   async getAll() {
-    return await db.getRepository(User).find();
+    return await userRepository.find();
   },
 
   async existsEmail(email: string) {
-    const user = await db.getRepository(User).findOneBy({ email });
-    return !!user
+    const user = await userRepository.findOneBy({ email });
+    return !!user;
   },
 };
