@@ -6,8 +6,10 @@ import {
   JoinColumn,
   UpdateDateColumn,
   CreateDateColumn,
+  OneToMany,
 } from "typeorm";
 import { User } from "../../user";
+import { Lesson } from "../../lesson/entity/lesson.entity";
 
 @Entity("course")
 export class Course {
@@ -31,6 +33,9 @@ export class Course {
 
   @UpdateDateColumn({ type: "timestamp" })
   updated_at: Date;
+
+  @OneToMany(() => Lesson, (lesson) => lesson.course)
+  lessons: Lesson[];
 
   @ManyToOne(() => User, (user) => user.courses, { nullable: false })
   @JoinColumn({ name: "teacher_id" })

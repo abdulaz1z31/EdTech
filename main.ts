@@ -9,12 +9,12 @@ app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const status = error.status || 500;
   const message = error.message || "Server error";
   const errors = error.errors || [];
-
   res.status(status).json({
     message,
     errors,
   });
 });
+
 AppDataSource.initialize()
   .then(() => {
     console.log("Database Connected ✅");
