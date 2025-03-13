@@ -10,6 +10,8 @@ import { UserRoles } from "../constants/user.constants";
 import { Course } from "../../course/entity/course.entity";
 import { Enrollment } from "../../enrollment/entity/enrollment.entity";
 import { Progress } from "../../progress/entity/progress.entity";
+import { Payment } from "../../payment/entity/payment.entity";
+import { Rating } from "../../raiting/entity/raiting.entity";
 
 @Entity({ name: "user" })
 export class User {
@@ -28,6 +30,9 @@ export class User {
   @Column({ type: "enum", enum: UserRoles })
   role: UserRoles;
 
+  @Column({ type: "decimal", default: 0 })
+  balance: number;
+
   @CreateDateColumn({ type: "timestamp" })
   created_at: Date;
 
@@ -42,4 +47,10 @@ export class User {
 
   @OneToMany(() => Enrollment, (enrollment) => enrollment.student)
   enrollments: Enrollment[];
+
+  @OneToMany(() => Payment, (payment) => payment.student)
+  payments: Payment[];
+
+  @OneToMany(() => Rating, (rating) => rating.student)
+  ratings: Rating[];
 }

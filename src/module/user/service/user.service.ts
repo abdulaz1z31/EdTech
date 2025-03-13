@@ -1,10 +1,13 @@
-import { AppDataSource, HashService as hashService } from "../../../infrastructure";
+import {
+  AppDataSource,
+  HashService as hashService,
+} from "../../../infrastructure";
 import { IUser } from "../constants/user.constants";
 import { User } from "../entity/user.entity";
 
 export const UserService = {
   async create(dto: IUser) {
-    const userRepository = AppDataSource.getRepository(User); 
+    const userRepository = AppDataSource.getRepository(User);
     const hashPassword = await hashService.generate(dto.password);
     dto.password = hashPassword;
     dto.created_at = new Date(Date.now());
@@ -60,6 +63,21 @@ export const UserService = {
   async getAll() {
     const userRepository = AppDataSource.getRepository(User);
     return await userRepository.find();
+  },
+
+  async paymentTo(id: string, amount: number) {
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOneBy({ id });
+    await userRepository.update(id, { balance: user.balance + amount });
+  },
+
+  async paymentFrom(id: string, amount: number) {
+    const userRepository = AppDataSource.getRepository(User);
+    const user = await userRepository.findOneBy({ id });
+    if (user.balance - amount < 0) {
+      throw new Error('Balance is insufficient')
+    }
+    await userRepository.update(id, { balance: user.balance - amount });
   },
 
   async existsEmail(email: string) {

@@ -10,6 +10,7 @@ export interface IUser {
   email: string;
   password: string;
   role: UserRoles;
+  balance?: number;
   created_at?: Date;
   updated_at?: Date;
 }

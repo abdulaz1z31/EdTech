@@ -11,6 +11,8 @@ import {
 import { User } from "../../user";
 import { Lesson } from "../../lesson/entity/lesson.entity";
 import { Enrollment } from "../../enrollment/entity/enrollment.entity";
+import { Payment } from "../../payment/entity/payment.entity";
+import { Rating } from "../../raiting/entity/raiting.entity";
 
 @Entity("course")
 export class Course {
@@ -44,4 +46,10 @@ export class Course {
   @ManyToOne(() => User, (user) => user.courses, { nullable: false })
   @JoinColumn({ name: "teacher_id" })
   user: User;
+
+  @OneToMany(() => Payment, (payment) => payment.course)
+  payments: Payment[];
+
+  @OneToMany(() => Rating, (rating) => rating.course)
+  ratings: Rating[];
 }

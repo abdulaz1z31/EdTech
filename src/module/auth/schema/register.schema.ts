@@ -1,7 +1,6 @@
 import Joi from "joi";
 import { UserRoles } from "../../user";
 
-
 export const registerSchema = Joi.object({
   full_name: Joi.string().min(3).max(50).required(),
   email: Joi.string().email().required(),
@@ -9,8 +8,8 @@ export const registerSchema = Joi.object({
   role: Joi.string()
     .valid(...Object.values(UserRoles))
     .required(),
+  balance: Joi.number().optional().default(0),
 });
-
 
 // export const registerSchema = Joi.object({
 //   full_name: Joi.string().min(3).max(50).required(),

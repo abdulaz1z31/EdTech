@@ -1,7 +1,6 @@
 import * as dotenv from "dotenv";
 dotenv.config();
 
-// Config turi
 export type ConfigType = {
   PORT: number;
   DB_HOST: string;
@@ -45,7 +44,6 @@ if (MISSING_VARIABLES.length > 0) {
   process.exit(1);
 }
 
-// Config obyekti
 export const config: ConfigType = {
   PORT: Number(process.env.PORT) || 3000,
   DB_HOST: process.env.DB_HOST || "",
