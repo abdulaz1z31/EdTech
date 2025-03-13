@@ -2,7 +2,7 @@ import { Router } from "express";
 import { CourseController } from "../controller/course.controller";
 import { courseSchema } from "../schema/course.schema";
 import { validate } from "../../application/middleware/validation.middleware";
-import { roleGuard } from "../../../infrastructure";
+import { authGuard, roleGuard } from "../../../infrastructure";
 import { UserRoles } from "../../user";
 import { asyncHandler } from "../../auth";
 
