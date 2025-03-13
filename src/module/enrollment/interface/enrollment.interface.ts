@@ -6,7 +6,6 @@ export enum EnrollmentStatus {
 }
 
 export interface IEnrollmentDto {
-  student_id: string;
   course_id: string;
   status: EnrollmentStatus;
 }

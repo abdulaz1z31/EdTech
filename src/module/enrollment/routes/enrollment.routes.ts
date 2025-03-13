@@ -14,11 +14,20 @@ enrollmentRouter.post(
   validate(enrollmentSchema),
   EnrollmentController.create,
 );
+
 enrollmentRouter.get(
   "/",
   roleGuard(UserRoles.teacher, UserRoles.admin),
   EnrollmentController.getAll,
 );
+
+enrollmentRouter.get(
+  "/my",
+  roleGuard(UserRoles.student),
+  EnrollmentController.getWithStudent,
+);
+
+enrollmentRouter.get("/course/:id", EnrollmentController.getWithCourse);
 
 enrollmentRouter.get("/:id", EnrollmentController.getById);
 
