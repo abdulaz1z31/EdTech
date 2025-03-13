@@ -1,5 +1,6 @@
 import Joi from "joi";
-import { EnrollmentStatus } from "../entity/enrollment.entity";
+import { EnrollmentStatus } from "../interface/enrollment.interface";
+
 
 export const enrollmentSchema = Joi.object({
   user_id: Joi.string().uuid().required(),

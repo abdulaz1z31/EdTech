@@ -29,18 +29,6 @@ export const EnrollmentController = {
     }
   },
 
-  async update(req: Request, res: Response, next: NextFunction) {
-    try {
-      const updatedEnrollment = await EnrollmentService.update(
-        req.params.id,
-        req.body,
-      );
-      res.json(updatedEnrollment);
-    } catch (error) {
-      next(error);
-    }
-  },
-
   async delete(req: Request, res: Response, next: NextFunction) {
     try {
       await EnrollmentService.delete(req.params.id);

@@ -32,6 +32,16 @@ export const AuthController = {
     }
   },
 
+  async getProfile(req: Request, res: Response, next: NextFunction) {
+    try {
+      const id = req.user.id;
+      const user = await authService.getMe(id);
+      return res.status(200).json(user);
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async refreshTokens(req: Request, res: Response, next: NextFunction) {
     try {
       const { refreshToken } = req.body;

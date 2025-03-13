@@ -37,7 +37,10 @@ export const AuthService = {
     if (!payload) {
       throw new Error("Invalid refresh token");
     }
-    const accessToken = jwtService.generateAccessToken(payload);
+    const accessToken = jwtService.generateAccessToken({
+      id: payload.id,
+      role: payload.role,
+    });
     return { accessToken };
   },
 
@@ -48,5 +51,9 @@ export const AuthService = {
       throw new Error("Old password is incorrect");
     }
     await userService.update(id, { password: newPassword });
+  },
+
+  async getMe(id: string) {
+    return await userService.findById(id);
   },
 };

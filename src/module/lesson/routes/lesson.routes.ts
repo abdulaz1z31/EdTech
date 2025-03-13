@@ -5,7 +5,7 @@ import { lessonSchema } from "../schema/lesson.schema";
 import { LessonController } from "../controller/lesson.controller";
 import { roleGuard } from "../../../infrastructure";
 import { UserRoles } from "../../user";
-import { asyncHandler } from "../../application/routes";
+import { asyncHandler } from "../../auth";
 
 export const lessonRouter = Router();
 
@@ -29,6 +29,6 @@ lessonRouter.put(
 
 lessonRouter.delete(
   "/:id",
-  roleGuard(UserRoles.admin),
+  roleGuard(UserRoles.admin, UserRoles.teacher),
   asyncHandler(LessonController.delete),
 );
