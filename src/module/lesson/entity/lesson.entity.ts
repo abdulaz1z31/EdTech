@@ -10,6 +10,7 @@ import {
 } from "typeorm";
 import { Course } from "../../course/entity/course.entity";
 import { Progress } from "../../progress/entity/progress.entity";
+import { FileEntity } from "../../file/entity/file.entity";
 
 @Entity("lesson")
 export class Lesson {
@@ -25,12 +26,6 @@ export class Lesson {
   @Column({ type: "int" })
   number: number;
 
-  @Column({ type: "varchar" })
-  content: string;
-
-  @Column({ type: "varchar" })
-  homework: string;
-
   @CreateDateColumn({ type: "timestamp" })
   created_at: Date;
 
@@ -42,5 +37,8 @@ export class Lesson {
   course: Course;
 
   @OneToMany(() => Progress, (progress) => progress.lesson)
-  progress: Course[];
+  progress: Progress[];
+
+  @OneToMany(() => FileEntity, (file) => file.lesson)
+  files: FileEntity[];
 }

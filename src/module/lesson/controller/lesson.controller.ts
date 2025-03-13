@@ -6,7 +6,9 @@ export const LessonController = {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
       const lesson: LessonDTO = req.body;
-      const newLesson = await LessonService.create(lesson);
+      const homeworks = req.files["homeworks"] || [];
+      const contents = req.files["contents"] || [];
+      const newLesson = await LessonService.create(lesson, homeworks, contents);
       res.status(201).json(newLesson);
     } catch (error) {
       next(error);

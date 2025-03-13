@@ -7,6 +7,7 @@ import { Lesson } from "../../module/lesson/entity/lesson.entity";
 import { Enrollment } from "../../module/enrollment/entity/enrollment.entity";
 import { Progress } from "../../module/progress/entity/progress.entity";
 import { Course } from "../../module/course/entity/course.entity";
+import { FileEntity } from "../../module/file/entity/file.entity";
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -15,7 +16,7 @@ export const AppDataSource = new DataSource({
   username: config.DB_USER,
   password: config.DB_PASSWORD,
   database: config.DB_NAME,
-  entities: [User, Course, Lesson, Enrollment, Progress],
+  entities: [User, Course, Lesson, Enrollment, Progress, FileEntity],
   synchronize: true,
   logging: true,
 });

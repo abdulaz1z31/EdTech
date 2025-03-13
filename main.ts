@@ -6,6 +6,7 @@ import path from "path";
 const app: Application = express();
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(appRouter);
 app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
