@@ -6,11 +6,11 @@ import "express-async-errors";
 
 export const enrollmentRouter = Router();
 
-// enrollmentRouter.post(
-//   "/",
-//   validate(enrollmentSchema),
-//   EnrollmentController.create,
-// );
+enrollmentRouter.post(
+  "/",
+  validate(enrollmentSchema),
+  EnrollmentController.create,
+);
 enrollmentRouter.get("/", EnrollmentController.getAll);
 enrollmentRouter.get("/:id", EnrollmentController.getById);
 enrollmentRouter.put(

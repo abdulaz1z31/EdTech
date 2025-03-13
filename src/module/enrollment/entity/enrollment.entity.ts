@@ -9,13 +9,7 @@ import {
 } from "typeorm";
 import { User } from "../../user";
 import { Course } from "../../course/entity/course.entity";
-
-export enum EnrollmentStatus {
-  PENDING = "pending",
-  ACTIVE = "active",
-  COMPLETED = "completed",
-  CANCELLED = "cancelled",
-}
+import { EnrollmentStatus } from "../interface/enrollment.interface";
 
 @Entity("enrollments")
 export class Enrollment {

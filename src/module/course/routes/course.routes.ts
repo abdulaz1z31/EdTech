@@ -1,23 +1,10 @@
-import {
-  NextFunction,
-  Request,
-  RequestHandler,
-  Response,
-  Router,
-} from "express";
+import { Router } from "express";
 import { CourseController } from "../controller/course.controller";
 import { courseSchema } from "../schema/course.schema";
 import { validate } from "../../application/middleware/validation.middleware";
-import "express-async-errors";
 import { roleGuard } from "../../../infrastructure";
 import { UserRoles } from "../../user";
-export const asyncHandler = (
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>,
-): RequestHandler => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    Promise.resolve(fn(req, res, next)).catch(next);
-  };
-};
+import { asyncHandler } from "../../application/routes";
 
 export const courseRouter = Router();
 

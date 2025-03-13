@@ -6,21 +6,13 @@ import {
   RequestHandler,
 } from "express";
 import { AuthController as authController } from "../controller/auth.controller";
-import "express-async-errors";
 import { registerSchema } from "../schema/register.schema";
 import { validate } from "../../application/middleware/validation.middleware";
 import { loginSchema } from "../schema/login.schema";
 import { refreshTokenSchema } from "../schema/refreshToken.schema";
 import { changePasswordSchema } from "../schema/changePassword.schema";
 import { authGuard } from "../../../infrastructure";
-
-const asyncHandler = (
-  fn: (req: Request, res: Response, next: NextFunction) => Promise<any>,
-): RequestHandler => {
-  return (req: Request, res: Response, next: NextFunction) => {
-    Promise.resolve(fn(req, res, next)).catch(next);
-  };
-};
+import { asyncHandler } from "../../application/routes";
 
 export const authRouter = Router();
 

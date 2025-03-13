@@ -2,7 +2,6 @@ import { Router } from "express";
 import { ProgressController } from "../controller/progress.controller";
 import { progressSchema } from "../schema/progress.schema";
 import { validate } from "../../application/middleware/validation.middleware";
-import "express-async-errors";
 
 export const progressRouter = Router();
 

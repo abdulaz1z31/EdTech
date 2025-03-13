@@ -1,11 +1,13 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import { AppDataSource, config } from "./src/infrastructure";
 import { appRouter } from "./src/module/application/routes/index";
+import path from "path";
 
 const app: Application = express();
 
 app.use(express.json());
 app.use(appRouter);
+app.use("/uploads", express.static(path.join(process.cwd(), "uploads")));
 app.use((error: any, req: Request, res: Response, next: NextFunction) => {
   const status = error.status || 500;
   const message = error.message || "Server error";
