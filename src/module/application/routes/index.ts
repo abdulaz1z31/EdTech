@@ -11,4 +11,4 @@ appRouter.use("/auth", authRouter);
 appRouter.use("/course", authGuard, courseRouter);
 appRouter.use("/lesson", lessonRouter);
 appRouter.use("/enrollment", authGuard, enrollmentRouter);
-appRouter.use("/progress", progressRouter);
+appRouter.use("/progress", authGuard, progressRouter);

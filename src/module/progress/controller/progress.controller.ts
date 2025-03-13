@@ -4,7 +4,7 @@ import { ProgressService } from "../service/progress.service";
 export const ProgressController = {
   async create(req: Request, res: Response, next: NextFunction) {
     try {
-      const progress = await ProgressService.create(req.body);
+      const progress = await ProgressService.create(req.body, req.user.id);
       res.status(201).json(progress);
     } catch (error) {
       next(error);

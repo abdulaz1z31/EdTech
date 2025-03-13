@@ -5,8 +5,8 @@ import { IProgressDto } from "../interface/progress.interface";
 const progressRepository = AppDataSource.getRepository(Progress);
 
 export const ProgressService = {
-  async create(dto: IProgressDto) {
-    return await progressRepository.save(dto);
+  async create(dto: IProgressDto, student_id: string) {
+    return await progressRepository.save({ ...dto, student_id });
   },
 
   async getAll() {

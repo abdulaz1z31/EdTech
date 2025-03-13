@@ -5,8 +5,6 @@ export enum ProgressStatus {
 }
 
 export interface IProgressDto {
-  user_id: string;
-  course_id: string;
   lesson_id: string;
   status: ProgressStatus;
 }
