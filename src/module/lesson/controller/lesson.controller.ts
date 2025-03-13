@@ -26,7 +26,7 @@ export const LessonController = {
     try {
       const { id } = req.params;
       const lesson = await LessonService.getById(id);
-      if (!lesson) return res.status(404).json({ message: "Lesson not found" });
+      if (!lesson) res.status(404).json({ message: "Lesson not found" });
       res.json(lesson);
     } catch (error) {
       next(error);

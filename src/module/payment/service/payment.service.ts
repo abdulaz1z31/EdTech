@@ -4,10 +4,9 @@ import { Payment } from "../entity/payment.entity";
 import { IPaymentDto } from "../interface/payment.interface";
 import { CourseService } from "../../course/service/course.service";
 
-const paymentRepository = AppDataSource.getRepository(Payment);
-
 export const PaymentService = {
   async create(dto: IPaymentDto, student_id: string) {
+    const paymentRepository = AppDataSource.getRepository(Payment);
     await UserService.paymentFrom(student_id, dto.amount);
     const course = await CourseService.getById(dto.course_id);
     await UserService.paymentTo(course.teacher_id, dto.amount);
@@ -15,10 +14,12 @@ export const PaymentService = {
   },
 
   async getAll() {
+    const paymentRepository = AppDataSource.getRepository(Payment);
     return await paymentRepository.find({ relations: ["student", "course"] });
   },
 
   async getById(id: string) {
+    const paymentRepository = AppDataSource.getRepository(Payment);
     const payment = await paymentRepository.findOne({
       where: { id },
       relations: ["student", "course"],
@@ -30,6 +31,7 @@ export const PaymentService = {
   },
 
   async getByStudent(student_id: string) {
+    const paymentRepository = AppDataSource.getRepository(Payment);
     return await paymentRepository.find({
       where: { student_id },
       relations: ["course"],
@@ -37,6 +39,7 @@ export const PaymentService = {
   },
 
   async update(id: string, dto: Partial<IPaymentDto>) {
+    const paymentRepository = AppDataSource.getRepository(Payment);
     const payment = await paymentRepository.findOne({ where: { id } });
     if (!payment) {
       throw new Error("Payment not found");
@@ -46,6 +49,7 @@ export const PaymentService = {
   },
 
   async delete(id: string) {
+    const paymentRepository = AppDataSource.getRepository(Payment);
     const payment = await paymentRepository.findOne({ where: { id } });
     if (!payment) {
       throw new Error("Payment not found");

@@ -2,8 +2,7 @@ import { Router } from "express";
 import { EnrollmentController } from "../controller/enrollment.controller";
 import { enrollmentSchema } from "../schema/enrollment.schema";
 import { validate } from "../../application/middleware/validation.middleware";
-import "express-async-errors";
-import { roleGuard } from "../../../infrastructure";
+import { roleGuard } from "../../../infrastructure/guard/role.guard";
 import { UserRoles } from "../../user";
 
 export const enrollmentRouter = Router();

@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { ProgressController } from "../controller/progress.controller";
-import { authGuard, roleGuard } from "../../../infrastructure";
+import { roleGuard } from "../../../infrastructure/guard/role.guard";
 import { UserRoles } from "../../user";
 
 export const progressRouter = Router();

@@ -2,14 +2,14 @@ import { AppDataSource } from "../../../infrastructure";
 import { Course } from "../entity/course.entity";
 import { ICourseDto } from "../interface/course.interface";
 
-const courseRepository = AppDataSource.getRepository(Course);
-
 export const CourseService = {
   async create(dto: ICourseDto) {
+    const courseRepository = AppDataSource.getRepository(Course);
     return await courseRepository.save(dto);
   },
 
   async getAllCourses() {
+    const courseRepository = AppDataSource.getRepository(Course);
     return await courseRepository
       .createQueryBuilder("course")
       .leftJoinAndSelect("course.ratings", "rating")
@@ -19,6 +19,7 @@ export const CourseService = {
   },
 
   async getById(id: string) {
+    const courseRepository = AppDataSource.getRepository(Course);
     const course = await courseRepository.findOne({ where: { id } });
     if (!course) {
       throw new Error("Course not found");
@@ -27,11 +28,13 @@ export const CourseService = {
   },
 
   async getByTeacher(teacher_id: string) {
+    const courseRepository = AppDataSource.getRepository(Course);
     const courses = await courseRepository.find({ where: { teacher_id } });
     return courses;
   },
 
   async update(id: string, dto: Partial<ICourseDto>) {
+    const courseRepository = AppDataSource.getRepository(Course);
     const course = await courseRepository.findOne({ where: { id } });
     if (!course) {
       throw new Error("Course not found");
@@ -41,6 +44,7 @@ export const CourseService = {
   },
 
   async delete(id: string) {
+    const courseRepository = AppDataSource.getRepository(Course);
     const course = await courseRepository.findOne({ where: { id } });
     if (!course) {
       throw new Error("Course not found");

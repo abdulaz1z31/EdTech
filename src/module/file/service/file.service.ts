@@ -3,10 +3,9 @@ import { FileEntity } from "../entity/file.entity";
 import { IFile } from "../interface/file.interface";
 import { AppDataSource } from "../../../infrastructure";
 
-const fileRepository = AppDataSource.getRepository(FileEntity);
-
 export const FileService = {
   async uploadFiles(dto: IFile, files: Express.Multer.File[]) {
+    const fileRepository = AppDataSource.getRepository(FileEntity);
     const savedFiles = await Promise.all(
       files.map(async (file) => {
         return await fileRepository.save({
@@ -19,10 +18,12 @@ export const FileService = {
   },
 
   async deleteFiles(fileIds: string[]) {
+    const fileRepository = AppDataSource.getRepository(FileEntity);
     await fileRepository.delete({ id: In(fileIds) });
   },
 
   async deleteByLesson(lesson_id: string) {
+    const fileRepository = AppDataSource.getRepository(FileEntity);
     await fileRepository.delete({ lesson_id });
   },
 };
