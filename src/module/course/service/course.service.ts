@@ -9,8 +9,13 @@ export const CourseService = {
     return await courseRepository.save(dto);
   },
 
-  async getAll() {
-    return await courseRepository.find();
+  async getAllCourses() {
+    return await courseRepository
+      .createQueryBuilder("course")
+      .leftJoinAndSelect("course.ratings", "rating")
+      .addSelect("COALESCE(AVG(rating.rating), 0)", "averageRating")
+      .groupBy("course.id")
+      .getRawMany();
   },
 
   async getById(id: string) {
