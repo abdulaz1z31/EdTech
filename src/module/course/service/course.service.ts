@@ -21,6 +21,11 @@ export const CourseService = {
     return course;
   },
 
+  async getByTeacher(teacher_id: string) {
+    const courses = await courseRepository.find({ where: { teacher_id } });
+    return courses;
+  },
+
   async update(id: string, dto: Partial<ICourseDto>) {
     const course = await courseRepository.findOne({ where: { id } });
     if (!course) {

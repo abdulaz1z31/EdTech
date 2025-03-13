@@ -17,6 +17,8 @@ courseRouter.post(
 
 courseRouter.get("/", asyncHandler(CourseController.getAll));
 
+courseRouter.get("/me", asyncHandler(CourseController.getMyCourses));
+
 courseRouter.get("/:id", asyncHandler(CourseController.getById));
 
 courseRouter.put(

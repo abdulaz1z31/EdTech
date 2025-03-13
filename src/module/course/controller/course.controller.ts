@@ -20,6 +20,16 @@ export const CourseController = {
     }
   },
 
+  async getMyCourses(req: Request, res: Response, next: NextFunction) {
+    try {
+      const id = req.user.id
+      const courses = await CourseService.getByTeacher(id);      
+      return res.status(200).json(courses);
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async getById(req: Request, res: Response, next: NextFunction) {
     try {
       const course = await CourseService.getById(req.params.id);
