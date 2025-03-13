@@ -1,4 +1,4 @@
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import { authRouter } from "../../auth";
 import { courseRouter } from "../../course";
 import { lessonRouter } from "../../lesson";
@@ -12,3 +12,6 @@ appRouter.use("/course", authGuard, courseRouter);
 appRouter.use("/lesson", lessonRouter);
 appRouter.use("/enrollment", authGuard, enrollmentRouter);
 appRouter.use("/progress", authGuard, progressRouter);
+appRouter.use((req: Request, res: Response) => {
+  res.status(404).json({ message: "Not found" });
+});
