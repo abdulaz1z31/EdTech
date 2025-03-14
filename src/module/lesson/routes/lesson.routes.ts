@@ -5,9 +5,8 @@ import { lessonSchema } from "../schema/lesson.schema";
 import { LessonController } from "../controller/lesson.controller";
 import { roleGuard } from "../../../infrastructure/guard/role.guard";
 import { authGuard } from "../../../infrastructure/jwt/auth.guard";
-import {UploadService} from '../../../infrastructure/multer/upload.service'
+import { UploadService } from "../../../infrastructure/multer/upload.service";
 import { UserRoles } from "../../user";
-import {} from "../../auth";
 
 export const lessonRouter = Router();
 

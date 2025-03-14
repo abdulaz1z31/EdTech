@@ -26,7 +26,6 @@ export const LessonService = {
       FileService.uploadFiles(homeworkDto, homeworks),
       FileService.uploadFiles(contentDto, contents),
     ]);
-
     return { ...newLesson, homeworks: homeworkFiles, contents: contentFiles };
   },
 

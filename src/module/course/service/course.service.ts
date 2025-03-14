@@ -12,9 +12,13 @@ export const CourseService = {
     const courseRepository = AppDataSource.getRepository(Course);
     return await courseRepository
       .createQueryBuilder("course")
-      .leftJoinAndSelect("course.ratings", "rating")
-      .addSelect("COALESCE(AVG(rating.rating), 0)", "averageRating")
+      .leftJoin("course.ratings", "rating")
+      .select([
+        "course.*",
+        "COALESCE(AVG(rating.rating), 0) AS averageRating",
+      ])
       .groupBy("course.id")
+      .orderBy('averageRating', "DESC")
       .getRawMany();
   },
 

@@ -5,7 +5,6 @@ import { validate } from "../../application/middleware/validation.middleware";
 import { roleGuard } from "../../../infrastructure/guard/role.guard";
 import { authGuard } from "../../../infrastructure/jwt/auth.guard";
 import { UserRoles } from "../../user";
-import {} from "../../auth";
 
 export const paymentRouter = Router();
 

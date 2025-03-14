@@ -28,5 +28,5 @@ export const AppDataSource = new DataSource({
     Rating,
   ],
   synchronize: true,
-  logging: true,
+  logging: false,
 });

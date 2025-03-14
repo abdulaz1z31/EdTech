@@ -39,6 +39,6 @@ export class Lesson {
   @OneToMany(() => Progress, (progress) => progress.lesson)
   progress: Progress[];
 
-  @OneToMany(() => FileEntity, (file) => file.lesson)
+  @OneToMany(() => FileEntity, (file) => file.lesson, {onDelete: "CASCADE"})
   files: FileEntity[];
 }

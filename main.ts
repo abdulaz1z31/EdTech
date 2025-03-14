@@ -1,3 +1,3 @@
-import start from "./src/module/application/app";
+import start from "./src/app";
 
 start();

@@ -1,7 +1,7 @@
 import express, { Application, NextFunction, Request, Response } from "express";
 import path from "path";
-import { appRouter } from "./routes";
-import { AppDataSource, config } from "../../infrastructure";
+import { appRouter } from "./module/application/routes";
+import { AppDataSource, config } from "./infrastructure";
 
 const start = function () {
   const app: Application = express();
