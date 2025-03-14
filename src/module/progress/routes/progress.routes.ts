@@ -10,6 +10,8 @@ progressRouter.post(
   roleGuard(UserRoles.student),
   ProgressController.create,
 );
+progressRouter.get("/student/:id", ProgressController.getStudentPorgress);
 progressRouter.get("/", ProgressController.getAll);
 progressRouter.get("/:id", ProgressController.getById);
+progressRouter.put("/:id", ProgressController.update);
 progressRouter.delete("/:id", ProgressController.delete);

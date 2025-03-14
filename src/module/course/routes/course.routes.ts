@@ -16,6 +16,8 @@ courseRouter.post(
 
 courseRouter.get("/", CourseController.getAll);
 
+courseRouter.get("/rating", CourseController.getAllWithRaiting);
+
 courseRouter.get("/me", CourseController.getMyCourses);
 
 courseRouter.get("/:id", CourseController.getById);

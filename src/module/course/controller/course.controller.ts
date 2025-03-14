@@ -13,7 +13,16 @@ export const CourseController = {
 
   async getAll(req: Request, res: Response, next: NextFunction) {
     try {
-      const courses = await CourseService.getAllCourses();
+      const courses = await CourseService.getAll();
+      res.status(200).json(courses);
+    } catch (error) {
+      next(error);
+    }
+  },
+
+  async getAllWithRaiting(req: Request, res: Response, next: NextFunction) {
+    try {
+      const courses = await CourseService.getAllCoursesWithRating();
       res.status(200).json(courses);
     } catch (error) {
       next(error);

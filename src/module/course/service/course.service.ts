@@ -8,7 +8,7 @@ export const CourseService = {
     return await courseRepository.save(dto);
   },
 
-  async getAllCourses() {
+  async getAllCoursesWithRating() {
     const courseRepository = AppDataSource.getRepository(Course);
     return await courseRepository
       .createQueryBuilder("course")
@@ -22,6 +22,11 @@ export const CourseService = {
       .getRawMany();
   },
 
+  async getAll() {
+    const courseRepository = AppDataSource.getRepository(Course);
+    return await courseRepository.find({relations: ['lessons']})
+  },
+  
   async getById(id: string) {
     const courseRepository = AppDataSource.getRepository(Course);
     const course = await courseRepository.findOne({ where: { id } });

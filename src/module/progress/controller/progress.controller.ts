@@ -29,6 +29,15 @@ export const ProgressController = {
     }
   },
 
+  async getStudentPorgress(req: Request, res: Response, next: NextFunction) {
+    try {
+      const progress = await ProgressService.getProgressByStudentId(req.params.id);
+      res.json(progress);
+    } catch (error) {
+      next(error);
+    }
+  },
+
   async update(req: Request, res: Response, next: NextFunction) {
     try {
       const updatedProgress = await ProgressService.update(
