@@ -12,8 +12,6 @@ export type ConfigType = {
   ACCESS_TIME: number; 
   REFRESH_SECRET: string;
   REFRESH_TIME: number;
-  USER_EMAIL: string;
-  APP_PASSWORD: string;
 };
 
 
@@ -28,8 +26,6 @@ const REQUIRED_VARIABLES: (keyof ConfigType)[] = [
   "ACCESS_TIME",
   "REFRESH_SECRET",
   "REFRESH_TIME",
-  "APP_PASSWORD",
-  "USER_EMAIL",
 ];
 
 const MISSING_VARIABLES = REQUIRED_VARIABLES.filter((variable) => {
@@ -55,6 +51,4 @@ export const config: ConfigType = {
   ACCESS_TIME: Number(process.env.ACCESS_TIME) || 1800,
   REFRESH_SECRET: process.env.REFRESH_SECRET || "",
   REFRESH_TIME: Number(process.env.REFRESH_TIME) || 604800,
-  USER_EMAIL: process.env.USER_EMAIL || "",
-  APP_PASSWORD: process.env.APP_PASSWORD || "",
 };
